@@ -11,7 +11,11 @@
     align-items: center;
 }
 
-.calculator,
+.calculator {
+    border-radius: 15px;
+    border: solid black 2px;
+}
+
 .screen,
 .buttons>button {
     border-radius: 5px;
@@ -26,20 +30,34 @@
     flex-direction: column;
     position: relative;
     background-color: rgb(165, 165, 165);
-    height: 500px;
+    height: 520px;
     width: 360px;
 }
 
 .screen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
     background-color: whitesmoke;
     margin-bottom: 1.5rem;
     height: 30%;
     width: 100%;
 }
 
+.screen-last {
+    font-size: 1.25rem;
+    padding-right: 1.5rem;
+}
+
+.screen-current {
+    font-size: 2.25rem;
+    padding-right: 1.5rem;
+}
+
 .buttons {
     display: grid;
-    gap: 1rem;
+    gap: .75rem;
     width: 100%;
     height: 100%;
     grid-template-columns: repeat(4, 1fr);
@@ -49,6 +67,7 @@
 button {
     font-size: 1.1rem;
     color: black;
+    background-color: whitesmoke
 }
 
 [data-key="clear"] {
@@ -59,7 +78,7 @@ button {
 
 [data-key="delete"] {
     grid-column: 3 / span 2;
-    background-color: rgb(252, 255, 65);
+    background-color: rgb(252, 255, 48);
 }
 
 [data-key="clear"],
