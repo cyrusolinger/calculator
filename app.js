@@ -6,16 +6,16 @@ const divide = (a, b) => a / b
 
 function operate(operator, a, b) {
     switch (operator) {
-        case '+':
+        case 'add':
             return add(a, b)
             break;
-        case '-':
+        case 'subtract':
             return subtract(a, b)
             break;
-        case '*':
+        case 'multiply':
             return multiply(a, b)
             break;
-        case '/':
+        case 'divide':
             return divide(a, b)
             break;
     }
@@ -23,40 +23,39 @@ function operate(operator, a, b) {
 
 const buttons = document.querySelector('.buttons')
 let screenCurr = document.querySelector('.screen-current')
-let screenLast = document.querySelector('.screen-last')
-let current = 0
+// let screenLast = document.querySelector('.screen-last')
 
+let current = 0;
+let last;
+let operator;
 
-// Listener for button press
 buttons.addEventListener("click", function(event) {
-    let last = current
-    const operator = event.target.dataset.
-key
-    // if (current === 'clear') {
-    // } else if (current === 'delete') {
-    //     return
-    // } else if (current === 'decimal') {
-    //     return
-    // }
-     if (operator.startsWith("operator")) {
-        screenLast.textContent = `${screenCurr.textContent} ${event.target.textContent}`
-        current = 0
-    }
-    //  else if (current === 'equals') {
-    //     console.log('=')
-    // }
-     else if (!isNaN(event.target.textContent)) {
-        current = event.target.dataset.key
-        screenCurr.textContent += event.target.dataset.key
-    }
-        
-    // IF delete
-    // IF clear
-    // IF operator
-        // UPDATE screen-last with screen-current value and operator)
-    // IF number
-    // IF equals
-    // IF decimal
 
+        if (event.target.textContent === 'clear') {
+            current = 0;
+            last = 0;
+            operator = null
+            screenCurr.textContent = 0
+        } else if (event.target.textContent === '=') {
+            const answer = operate(operator, parseInt(last), parseInt(current)) // returns answer
+            console.log(`answer: ${answer}`)
+            screenCurr.textContent = answer
+        } else if (event.target.dataset.key.startsWith("operator")) {
+            operator = event.target.dataset.key.substring(9)
+            last = current
+            } else if (!isNaN(parseInt(event.target.dataset.key)) && !isNaN(last)) {
+            current = event.target.textContent
+            screenCurr.textContent = event.target.dataset.key
+        } else if (!isNaN(event.target.textContent)) {
+            current += event.target.textContent
+            screenCurr.textContent += event.target.dataset.key
+        }
+
+
+
+     console.log(`current: ${current}`)
+     console.log(`last: ${last}`)
+     console.log(`operator: ${operator}`)
 })
+
 

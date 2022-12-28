@@ -70,6 +70,10 @@ button {
     background-color: whitesmoke
 }
 
+button:active {
+    filter: brightness(75%);
+}
+
 [data-key="clear"] {
     grid-column: 1 / span 2;
     background-color: rgb(255, 116, 116);
